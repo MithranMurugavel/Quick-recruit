@@ -30,30 +30,30 @@ setup('QuickRecruit authentication', async ({ browser }) => {
 
     try {
 
-        // STEP 1: Open Task URL
+       
         await page.goto(`${process.env.BASE_URL}/task`);
 
-        // STEP 2: Check whether login is required
+        
         const emailInput = page.locator('#signin_email');
 
         if (await emailInput.isVisible().catch(() => false)) {
 
             console.log('Login required...');
 
-            // Enter email
+            
             await emailInput.fill(process.env.LOGIN_EMAIL);
 
-            // Enter password
+            
             await page.locator('#signin_password')
                 .fill(process.env.LOGIN_PASSWORD);
 
-            // STEP 3: Click Sign in
+            
             await page.getByRole('button', {
                 name: 'Sign in',
                 exact: true
             }).click();
 
-            // STEP 4: Wait for Dashboard redirect
+            
             await page.waitForURL(
                 '**/dashboard/ai-hiring-platform',
                 { timeout: 60000 }
@@ -67,15 +67,15 @@ setup('QuickRecruit authentication', async ({ browser }) => {
 
         }
 
-        // STEP 5: Navigate from Dashboard to Task
+        
         await page.goto(`${process.env.BASE_URL}/task`);
 
-        // STEP 6: Verify Task page
+        
         await expect(page).toHaveURL(/\/task/);
 
         console.log('Successfully navigated to Task module');
 
-        // STEP 7: Save authentication
+        
         await context.storageState({
             path: authFile
         });

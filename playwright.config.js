@@ -10,13 +10,22 @@ const authFile = path.join(
 
 module.exports = defineConfig({
 
-    testDir: './tests',
+    // testDir: './tests',
 
     fullyParallel: false,
 
     workers: 1,
+    
+    retries:2,
+    expect: {
 
-    reporter: 'html',
+    timeout: 10000
+    },
+
+    reporter: [
+        ['list'],
+        ['allure-playwright']
+    ],
 
     use: {
         baseURL: process.env.BASE_URL,

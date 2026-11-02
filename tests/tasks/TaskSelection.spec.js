@@ -9,7 +9,7 @@ test('TC011 - Verify first task selection works', async ({ page }) => {
     // Locate first task row using its title
     const firstTaskRow = page.locator('tr.ant-table-row')
         .filter({
-            hasText: 'Test The Label'
+            hasText: ' Test The Label '
         });
 
     // Verify task row exists

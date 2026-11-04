@@ -1,26 +1,16 @@
-
 const { test, expect } = require('@playwright/test');
 
 test.describe('Task Module - Search Functionality', () => {
 
-    test.beforeEach(async ({ page }) => {
-
-        await page.goto('https://alpha.quickrecruit.com/task?dueDateFrom=&dueDateTo=&search=');
-
-    });
-
+    
     test('TC001 - Verify search works with uppercase and lowercase characters', async ({ page }) => {
 
-        
         const searchInput = page.getByPlaceholder('Search Task');
 
-    
-        await searchInput.fill('TeSt ThE LaBEl');
+        await searchInput.fill(' TeSt ThE LaBEl ');
 
-       
         const tableRows = page.locator('.ant-table-tbody > tr.ant-table-row');
 
-        
         await expect(tableRows.first()).toBeVisible();
 
         const firstRowTitle = tableRows.first().locator('td').first();
@@ -30,5 +20,4 @@ test.describe('Task Module - Search Functionality', () => {
         console.log('Search functionality verified successfully');
 
     });
-
 });

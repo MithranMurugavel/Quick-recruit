@@ -7,7 +7,10 @@
     "test": "npx playwright test",
     "test:addtask": "npx playwright test tests/tasks/AddTask.spec.js",
     "test:headed": "npx playwright test --headed",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "check:syntax": "find tests -type f -name '*.js' -print0 | xargs -0 -n1 node --check",
+    "check:tests": "playwright test --list",
+    "test-check": "npm run check:syntax && npm run check:tests && playwright test"
   },
   "keywords": [],
   "author": "",

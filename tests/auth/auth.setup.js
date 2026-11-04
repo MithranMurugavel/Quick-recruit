@@ -30,10 +30,8 @@ setup('QuickRecruit authentication', async ({ browser }) => {
 
     try {
 
-       
         await page.goto(`${process.env.BASE_URL}/task`);
 
-        
         const emailInput = page.locator('#signin_email');
 
         if (await emailInput.isVisible().catch(() => false)) {

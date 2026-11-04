@@ -10,23 +10,22 @@ const authFile = path.join(
 
 module.exports = defineConfig({
 
-    // testDir: './tests',
+    testDir: './tests',
 
     fullyParallel: false,
 
     workers: 1,
     
-    retries:2,
     expect: {
 
-    timeout: 10000
+    timeout: 3000
     },
 
     reporter: [
         ['list'],
-        ['allure-playwright']
+        ['allure-playwright'],
+        ['html',{open:'never'}]
     ],
-
     use: {
         baseURL: process.env.BASE_URL,
         screenshot: 'only-on-failure',
@@ -47,7 +46,6 @@ module.exports = defineConfig({
             use: {
                 ...devices['Desktop Chrome'],
                 storageState: authFile,
-                headless: false
             },
 
             dependencies: ['setup'],
